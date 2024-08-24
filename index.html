@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+       
+        const getComputerChoice = () => {
+            const choices = ['paper','rock','scissors'];
+            const randomIndex = Math.floor(Math.random() * 3)
+            const randomChoice = choices[randomIndex]
+            return randomChoice
+        }
+
+        const getHumanChoice = () => {
+            const choice = prompt('Enter choice: ', '')
+            if (choice === 'rock' || choice === 'paper' || choice === 'scissors') {
+                return choice
+            } else {
+                alert('Wrong choice!')
+            }
+           
+        }
+
+        
+        
+        const playGame = function() {
+
+            let humanScore = 0;
+            let computerScore = 0;
+            let tie = 0;
+
+
+            const playRound = (humanChoice,computerChoice) => {
+           
+           if (computerChoice === humanChoice) {
+               console.log('Tie!');
+               tie++;
+           } else if (computerChoice == 'rock' && humanChoice == 'scissors') {
+               console.log('computerWins');
+               computerScore++;
+           } else if (computerChoice == 'paper' && humanChoice == 'rock') {
+               console.log('computerWins!');
+               computerScore++;
+           } else if (computerChoice == 'scissors' && humanChoice == 'paper') {
+               console.log('computerWins');
+               computerScore++;
+           } else {
+            if (humanChoice == 'rock' || humanChoice == 'paper' || humanChoice == 'scissors'){
+                
+                console.log('humanWins')
+                humanScore++
+              } else {
+                console.log('Wrong human choice')
+                }
+           } 
+       }
+
+       playRound(getHumanChoice(),getComputerChoice());
+       playRound(getHumanChoice(),getComputerChoice());
+       playRound(getHumanChoice(),getComputerChoice());
+       playRound(getHumanChoice(),getComputerChoice());
+       playRound(getHumanChoice(),getComputerChoice());
+
+       console.log(`a tie times: ${tie} \n a computer wins: ${computerScore} \n a human win: ${humanScore}`)
+      
+     }
+        playGame();
+    </script>
+</body>
+</html>
