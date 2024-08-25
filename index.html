@@ -5,10 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body></body>
+
+    <button onclick="playRound('rock',getComputerChoice())">ROCK</button>
+    <button onclick="playRound('paper',getComputerChoice())">PAPER</button>
+    <button onclick="playRound('scissors',getComputerChoice())">SCISSORS</button>
+
+
+    <div id="container">
+
+    </div>
     <script>
 
-       
+          let humanScore = 0;
+            let computerScore = 0;
+            let tie = 0;
+
+        const container = document.querySelector('#container')
+
+        
+        //Tie Section
+        const tieScoreDiv = document.createElement('div')
+        tieScoreDiv.textContent = 'Tie: '
+        const tieParagraph = document.createElement('p');
+        tieParagraph.textContent = 0
+        tieScoreDiv.appendChild(tieParagraph)
+        //Computer win case
+        const computerScoreDiv = document.createElement('div')
+        computerScoreDiv.textContent = 'Computer score: '
+        const computerWinParagraph = document.createElement('p')
+        computerWinParagraph.textContent = 0;
+        computerScoreDiv.appendChild(computerWinParagraph)
+        // human win case
+        const humanScoreDiv = document.createElement('div')
+        humanScoreDiv.textContent = 'Human score: '
+        const humanWinParagraph = document.createElement('p');
+        humanWinParagraph.textContent = 0;
+        humanScoreDiv.appendChild(humanWinParagraph)
+        //appendChild section
+
+        container.appendChild(tieScoreDiv);
+        container.appendChild(computerScoreDiv);
+        container.appendChild(humanScoreDiv)
+
         const getComputerChoice = () => {
             const choices = ['paper','rock','scissors'];
             const randomIndex = Math.floor(Math.random() * 3)
@@ -26,50 +65,42 @@
            
         }
 
-        
-        
-        const playGame = function() {
-
-            let humanScore = 0;
-            let computerScore = 0;
-            let tie = 0;
-
-
-            const playRound = (humanChoice,computerChoice) => {
+        const playRound = (humanChoice,computerChoice) => {
            
            if (computerChoice === humanChoice) {
-               console.log('Tie!');
                tie++;
+                tieParagraph.textContent = tie;
            } else if (computerChoice == 'rock' && humanChoice == 'scissors') {
-               console.log('computerWins');
                computerScore++;
+               computerWinParagraph.textContent = computerScore;
            } else if (computerChoice == 'paper' && humanChoice == 'rock') {
-               console.log('computerWins!');
                computerScore++;
+               computerWinParagraph.textContent = computerScore;
            } else if (computerChoice == 'scissors' && humanChoice == 'paper') {
-               console.log('computerWins');
                computerScore++;
+               computerWinParagraph.textContent = computerScore;
            } else {
             if (humanChoice == 'rock' || humanChoice == 'paper' || humanChoice == 'scissors'){
                 
-                console.log('humanWins')
+                
                 humanScore++
+                humanWinParagraph.textContent = humanScore;
               } else {
                 console.log('Wrong human choice')
                 }
            } 
+
+           if (humanScore == 5) {
+        alert('Human wins!!!')
+       } else if (computerScore == 5) {
+        alert('computerWins')
+       } else if (tie == 5) {
+        alert('Tie!!')
        }
-
-       playRound(getHumanChoice(),getComputerChoice());
-       playRound(getHumanChoice(),getComputerChoice());
-       playRound(getHumanChoice(),getComputerChoice());
-       playRound(getHumanChoice(),getComputerChoice());
-       playRound(getHumanChoice(),getComputerChoice());
-
-       console.log(`a tie times: ${tie} \n a computer wins: ${computerScore} \n a human win: ${humanScore}`)
+       }
+       
       
-     }
-        playGame();
+   
     </script>
 </body>
 </html>
